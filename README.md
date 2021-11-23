@@ -62,3 +62,9 @@ $ bin/kafka-topics.sh --create --topic openstreetmap-minutely --bootstrap-server
 ✅ At this point, the required zookeeper and Kafka broker service have started and we also created a topic. We can switch to running Producer and Consumer code in this repository.
 
 
+
+<!-- Check for messages published into a topic from the beginning -->
+
+```sh
+$ bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic openstreetmap-minutely --from-beginning
+```

@@ -1,5 +1,6 @@
 # osm-kafka
-Apache Kafka publish/subscribe template for minutely OSM diffs
+
+This is an Apache Kafka implementation to create a Producer and Consumer template for listening to OpenStreetMap Minutely diffs.
 
 
 ## Install Kafka in machine
@@ -22,6 +23,7 @@ $ cd kafka_2.13-3.0.0
 
 
 ### Start the ZooKeeper service from the local directory.
+
 ### Note: Soon, ZooKeeper may no longer be required by Apache Kafka in newer versions.
 
 ```sh
@@ -38,5 +40,6 @@ $ bin/kafka-server-start.sh config/server.properties
 ```
 
 
-✅ At this point, the required services for Apache Kakfa have started. We can switch to running the code in this repository.
+✅ At this point, the required services for Apache Kafka have started. We can switch to running the code in this repository.
+
 

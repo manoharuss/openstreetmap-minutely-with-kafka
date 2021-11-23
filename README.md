@@ -59,6 +59,6 @@ $ bin/kafka-topics.sh --create --topic openstreetmap-minutely --bootstrap-server
 # Created topic openstreetmap-minutely.
 ```
 
-✅ At this point, the required services for Apache Kafka have started. We can switch to running the code in this repository.
+✅ At this point, the required zookeeper and Kafka broker service have started and we also created a topic. We can switch to running Producer and Consumer code in this repository.
 
 

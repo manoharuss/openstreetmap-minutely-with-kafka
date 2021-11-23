@@ -1,6 +1,6 @@
 # osm-kafka
 
-This is an Apache Kafka implementation to create a Producer and Consumer template for listening to OpenStreetMap Minutely diffs.
+This is an Apache Kafka implementation template to create a Producer and Consumer for listening to OpenStreetMap Minutely diffs.
 
 
 ## Install Kafka in machine
@@ -12,7 +12,7 @@ $ curl https://dlcdn.apache.org/kafka/3.0.0/kafka_2.13-3.0.0.tgz -o kafka_2.13-3
 ```
 
 
-(At this point, we can move the kafka tar file into any directoy. It does not matter for this repository as long as Kafka is running in the local system.)
+(At this point, we can move the kafka tar file into any directoy. The directory in which Kafka exists does not really have to be a specific path as long as a terminal session is running a Kafka session.)
 
 Unzip the downloaded tar file and cd into the Kafka directory. 
 

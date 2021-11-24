@@ -119,17 +119,18 @@ if __name__ == "__main__":
         # osmium export data.osm.pbf -o data.geojsonseq -c export-config.json
         # See https://docs.osmcode.org/osmium/latest/osmium-export.html for details
         print("Publishing minutely osc diff..")
+        print(f"Publishing minutely sequence number : {remote_sequence_number}")
 
         # Create a Kafka producer
         producer = connect_kafka_producer()
         publish_message(
             producer, "openstreetmap-minutely", str(remote_sequence_number), osc_str
         )
-        print("Publishing complete")
+        print(f"Publishing completed for sequence number : {remote_sequence_number}")
 
         # Now after successfully completing the publish, overwrite local state file
         overwrite_local_sequence_number(remote_sequence_number)
-        print("Done")
+        print("Success!")
 
     else:
         # TODO: we need to sleep and rerun this producer every 1 minute at execution level

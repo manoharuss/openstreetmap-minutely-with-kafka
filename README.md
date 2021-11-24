@@ -88,6 +88,49 @@ bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic openstre
 ```
 
 
+# Run producer
+
+After the Kafka services have started and a topic name is created, we can now publish messages into the topic.
+
+In `run_producer.py`, we have a sample code that downloads and keeps state of every openstreetmap minutely file. If there is a new state.txt change, the osc.gz file is downloaded and published as a new message.
+
+**Try it locally**
+
+```sh
+python run_producer.py
+```
+
+When there is a new minutely file and the sequence number than the state.txt committed to the repo, the producer code will publish osc text file.
+
+```log
+Publishing minutely osc diff..
+Publishing minutely sequence number : 4815209
+Message published successfully.
+Publishing completed for sequence number : 4815209
+Success!
+```
 
 
+# Run Consumer
+
+Once few messages are published, a consumer app can download the published messages and run business logic with those messages.
+
+We can have a consumer run and Subscribe to messages published from the very beginning. Try running the consumer after publishing few messages.
+
+```sh
+python run_consumer.py
+```
+
+When there are messages, the consumer will log out all the sequence numbers to terminal for verification.
+
+```log
+Running Consumer..
+Consumed sequence number b'4815169'
+Consumed sequence number b'4815208'
+Consumed sequence number b'4814390'
+Consumed sequence number b'4814387'
+Consumed sequence number b'4814389'
+Consumed sequence number b'4815209'
+Consumer ended after reading all messages successfully.
+```
 

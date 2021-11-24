@@ -1,4 +1,4 @@
-# openstreetmap-with-kafka 
+# openstreetmap-minutely-with-kafka 
 
 This is an Apache Kafka implementation template to create a Producer and Consumer for listening to OpenStreetMap Minutely diffs.
 

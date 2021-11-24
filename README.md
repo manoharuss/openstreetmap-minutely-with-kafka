@@ -2,6 +2,17 @@
 
 This is an Apache Kafka implementation template to create a Producer and Consumer for listening to OpenStreetMap Minutely diffs.
 
+- [Installation](#installation)
+  - [Install Kafka in machine](#install-kafka-in-machine)
+  - [Start the ZooKeeper service](#start-the-zookeeper-service)
+  - [Start Apache Kafka service](#start-apache-kafka-service)
+  - [Start a Kafka Topic and expose the bootstrap Server through a localport](#start-a-kafka-topic-and-expose-the-bootstrap-server-through-a-localport)
+  - [Inspect messages](#inspect-messages)
+
+
+
+
+# Installation
 
 ## Install Kafka in machine
 
@@ -27,40 +38,40 @@ cd kafka_2.13-3.0.0
 ```
 
 
-### Start the ZooKeeper service from the local directory.
+## Start the ZooKeeper service
 
 ### Note: Soon, ZooKeeper may no longer be required by Apache Kafka in newer versions.
 
-Open a new terminal session and create a Zookeeper session.
+Since Kafka runs on Zookeeper, we need to start the Zookeeper service in the background in a terminal session. Open a new terminal session and create a Zookeeper session with below command.
 
 ```sh
 bin/zookeeper-server-start.sh config/zookeeper.properties
 ```
 
 
-### Start Apache Kafka service
+## Start Apache Kafka service
 
-Open a new terminal session and start the Kafka broker service
+Similarly, open a new terminal session and start the Kafka broker service.
 
 ```sh
 bin/kafka-server-start.sh config/server.properties
 ```
 
-### Start a Apache Kafka Topic and expose the Kafka Server through a local port number
+## Start a Kafka Topic and expose the bootstrap Server through a localport
 
-Open a new terminal session and with below command, we create a new topic. Note that, at this point, we can rename the topic to any name. In this case, we are using openstreetmap-minutely as the topic name for example. 
+Open a new terminal session and with below command, we can create a new topic. Note that, at this point, we can rename the topic to any name. In this case, we are using openstreetmap-minutely as the topic name for example. 
 
 
-Input parameters.
+Required input parameters.
 - Partition count: We also have to provide a partition count, in this example, I am choosing to give 10. Rule of thumb is to use partition count between 10-10000.
-- Replication factor: Replication factor defines the number of distributed copies of a topic in a Kafka cluster. Replication factor can be defined at topic level and since this is an example repository that does not run on Cluster but only runs in a single node, I am using 1.
+- Replication factor: Replication factor defines the number of distributed backup copies of a topic in a Kafka cluster. Replication factor can be defined at topic level and since this is an example repository that does not run on Cluster but only runs in a single node, I am using 1.
 
 
 ```sh
 bin/kafka-topics.sh --create --topic openstreetmap-minutely --bootstrap-server localhost:9092 --partitions 10 --replication-factor 1
 ```
 
-A successful creationg of a topic returns a log output like below.
+A successful creation of a topic returns a log output like below.
 ```log
 # Created topic openstreetmap-minutely.
 ```
@@ -68,9 +79,15 @@ A successful creationg of a topic returns a log output like below.
 ✅ At this point, the required zookeeper and Kafka broker service have started and we also created a topic. We can switch to running Producer and Consumer code in this repository.
 
 
+## Inspect messages
 
-<!-- Check for messages published into a topic from the beginning -->
+To inspect messages, we can console out all the messages published into the topic since the beginning.
 
 ```sh
 bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic openstreetmap-minutely --from-beginning
 ```
+
+
+
+
+

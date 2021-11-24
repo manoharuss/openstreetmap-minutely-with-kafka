@@ -8,7 +8,7 @@ This is an Apache Kafka implementation template to create a Producer and Consume
 Let's download the latest Apache Kafka tar bundle and install it locally.
 
 ```sh
-$ curl https://dlcdn.apache.org/kafka/3.0.0/kafka_2.13-3.0.0.tgz -o kafka_2.13-3.0.0.tgz
+curl https://dlcdn.apache.org/kafka/3.0.0/kafka_2.13-3.0.0.tgz -o kafka_2.13-3.0.0.tgz
 ```
 
 
@@ -17,8 +17,13 @@ $ curl https://dlcdn.apache.org/kafka/3.0.0/kafka_2.13-3.0.0.tgz -o kafka_2.13-3
 Unzip the downloaded tar file and cd into the Kafka directory. 
 
 ```sh
-$ tar -xzf kafka_2.13-3.0.0.tgz
-$ cd kafka_2.13-3.0.0
+tar -xzf kafka_2.13-3.0.0.tgz
+```
+
+Go into the kafka package directory to start the services.
+
+```sh
+cd kafka_2.13-3.0.0
 ```
 
 
@@ -29,7 +34,7 @@ $ cd kafka_2.13-3.0.0
 Open a new terminal session and create a Zookeeper session.
 
 ```sh
-$ bin/zookeeper-server-start.sh config/zookeeper.properties
+bin/zookeeper-server-start.sh config/zookeeper.properties
 ```
 
 
@@ -38,7 +43,7 @@ $ bin/zookeeper-server-start.sh config/zookeeper.properties
 Open a new terminal session and start the Kafka broker service
 
 ```sh
-$ bin/kafka-server-start.sh config/server.properties
+bin/kafka-server-start.sh config/server.properties
 ```
 
 ### Start a Apache Kafka Topic and expose the Kafka Server through a local port number
@@ -52,9 +57,10 @@ Input parameters.
 
 
 ```sh
-$ bin/kafka-topics.sh --create --topic openstreetmap-minutely --bootstrap-server localhost:9092 --partitions 10 --replication-factor 1
+bin/kafka-topics.sh --create --topic openstreetmap-minutely --bootstrap-server localhost:9092 --partitions 10 --replication-factor 1
 ```
 
+A successful creationg of a topic returns a log output like below.
 ```log
 # Created topic openstreetmap-minutely.
 ```
@@ -66,5 +72,5 @@ $ bin/kafka-topics.sh --create --topic openstreetmap-minutely --bootstrap-server
 <!-- Check for messages published into a topic from the beginning -->
 
 ```sh
-$ bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic openstreetmap-minutely --from-beginning
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic openstreetmap-minutely --from-beginning
 ```

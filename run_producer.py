@@ -80,7 +80,9 @@ def get_local_sequence_numbers() -> int:
         # Read the latest local sequence number if available
         local_latest_state = open("state.txt", "r")
         local_sequencenumber_line = local_latest_state.read().splitlines()[1]
-        local_sequence_number = int(local_sequencenumber_line.split("sequenceNumber=")[1])
+        local_sequence_number = int(
+            local_sequencenumber_line.split("sequenceNumber=")[1]
+        )
         return local_sequence_number
     except:
         raise " No local state.txt available!! An initial state.txt is required."
@@ -97,11 +99,10 @@ def overwrite_local_sequence_number(sequence_number: int) -> None:
 
     url_construct = f"https://planet.osm.org/replication/minute/00{first_num}/{second_num}/{third_num}.state.txt"
 
-
     remote_state = requests.get(url_construct)
     with open("state.txt", "w") as file:
         file.write(remote_state.text)
-    
+
     return
 
 
@@ -114,7 +115,7 @@ if __name__ == "__main__":
         osc_gz_url = get_sequence_number_url(remote_sequence_number)
         osc_str = get_sequence_number_osc(osc_gz_url)
         # TODO: We can add more code to parse osc text into a JSON file using osmium tool
-        # We can do something like 
+        # We can do something like
         # osmium export data.osm.pbf -o data.geojsonseq -c export-config.json
         # See https://docs.osmcode.org/osmium/latest/osmium-export.html for details
         print("Publishing minutely osc diff..")

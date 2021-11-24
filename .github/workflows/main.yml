@@ -1,0 +1,22 @@
+name: GITHUB CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  main:
+    name: BUILD AND TEST ON CI
+    runs-on: ubuntu-20.04
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+      with:
+        python-version: '3.9'
+    # Runs a set of commands using the runners shell
+    - name: Setup Python Dependencies and Lint
+      run: |
+        pip3 install -r requirements.txt
+        black *.py

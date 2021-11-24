@@ -1,12 +1,17 @@
 from kafka import KafkaConsumer
 
-if __name__ == '__main__':
-    print('Running Consumer..')
+if __name__ == "__main__":
+    print("Running Consumer..")
     parsed_records = []
-    topic_name = 'openstreetmap-minutely'
+    topic_name = "openstreetmap-minutely"
 
-    consumer = KafkaConsumer(topic_name, auto_offset_reset='earliest',
-                             bootstrap_servers=['localhost:9092'], api_version=(0, 10), consumer_timeout_ms=1000)
+    consumer = KafkaConsumer(
+        topic_name,
+        auto_offset_reset="earliest",
+        bootstrap_servers=["localhost:9092"],
+        api_version=(0, 10),
+        consumer_timeout_ms=1000,
+    )
     for published_msg in consumer:
         # This is the OpenStreetMap minutely osc text
         consume_text = published_msg.value
@@ -18,4 +23,3 @@ if __name__ == '__main__':
     print("Consumer ended after reading all messages successfully.")
 
     consumer.close()
-

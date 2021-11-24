@@ -1,11 +1,11 @@
 # openstreetmap-minutely-with-kafka 
 
-This is an Apache Kafka implementation template to create a Producer and Consumer for listening to OpenStreetMap Minutely diffs.
+This is an Apache Kafka implementation template to create a Producer and Consumer for listening to OpenStreetMap Minutely diffs. Each Pub/Sub message is a minutely osc.gz text, we can further break this down into a single geojson by parsing the osc file with osmium-tool.
 
 - [Installation](#installation)
   - [Install Kafka in machine](#install-kafka-in-machine)
   - [Start the ZooKeeper service](#start-the-zookeeper-service)
-  - [Start Apache Kafka service](#start-apache-kafka-service)
+  - [Start the Kafka service](#start-the-kafka-service)
   - [Start a Kafka Topic and expose the bootstrap Server through a localport](#start-a-kafka-topic-and-expose-the-bootstrap-server-through-a-localport)
   - [Inspect messages](#inspect-messages)
 
@@ -49,7 +49,7 @@ bin/zookeeper-server-start.sh config/zookeeper.properties
 ```
 
 
-## Start Apache Kafka service
+## Start the Kafka service
 
 Similarly, open a new terminal session and start the Kafka broker service.
 

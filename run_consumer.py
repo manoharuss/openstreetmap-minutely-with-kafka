@@ -16,7 +16,7 @@ if __name__ == "__main__":
         consume_text = published_msg.value
         # This is the sequenece number that belongs to the OpenStreetMap minutely diff
         consume_sequence = published_msg.key
-        # TODO: We can do anything with the key/value pairs from here.
+        # NOTE: We can append to database or do anything with the key/value pairs from here.
         print(f"Consumed sequence number {consume_sequence}")
 
     print("Consumer ended after reading all messages successfully.")

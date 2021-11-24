@@ -8,6 +8,8 @@ This is an Apache Kafka implementation template to create a Producer and Consume
   - [Start the Kafka service](#start-the-kafka-service)
   - [Start a Kafka Topic and expose the bootstrap Server through a localport](#start-a-kafka-topic-and-expose-the-bootstrap-server-through-a-localport)
   - [Inspect messages](#inspect-messages)
+  - [Run producer](#run-producer)
+  - [Run Consumer](#run-consumer)
 
 
 

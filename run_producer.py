@@ -5,7 +5,7 @@ from kafka import KafkaProducer
 
 
 def get_sequence_number_url(sequence_number: int) -> str:
-    # Given a sequence number, this method downloads the minutely diff file from planet.osm.org and returns the text file
+    # Given a sequence number, this method downloads the minutely diff file from planet.osm.org and returns the osc.gz file URL
 
     # Assert number of characters in the sequence_number is 7
     assert len(str(sequence_number)) == 7
@@ -35,14 +35,14 @@ def get_sequence_number_osc(url_construct: str) -> str:
         return osc_content_text
 
 
-def connect_kafka_producer():
+def connect_kafka_producer() -> KafkaProducer:
     _producer = None
     try:
         _producer = KafkaProducer(
             bootstrap_servers=["localhost:9092"], api_version=(0, 10)
         )
     except Exception as ex:
-        print("Exception while connecting Kafka")
+        print("Exception while connecting Kafka and creating a Kafka Producer")
         print(str(ex))
     finally:
         return _producer
@@ -83,7 +83,7 @@ def get_local_sequence_numbers() -> int:
         local_sequence_number = int(local_sequencenumber_line.split("sequenceNumber=")[1])
         return local_sequence_number
     except:
-        raise " No local state.txt available!!"
+        raise " No local state.txt available!! An initial state.txt is required."
 
 
 def overwrite_local_sequence_number(sequence_number: int) -> None:
@@ -113,7 +113,10 @@ if __name__ == "__main__":
     if local_sequence_number != remote_sequence_number:
         osc_gz_url = get_sequence_number_url(remote_sequence_number)
         osc_str = get_sequence_number_osc(osc_gz_url)
-        # TODO: Make more code to parse osc text into a JSON file
+        # TODO: We can add more code to parse osc text into a JSON file using osmium tool
+        # We can do something like 
+        # osmium export data.osm.pbf -o data.geojsonseq -c export-config.json
+        # See https://docs.osmcode.org/osmium/latest/osmium-export.html for details
         print("Publishing minutely osc diff..")
 
         # Create a Kafka producer
@@ -128,5 +131,5 @@ if __name__ == "__main__":
         print("Done")
 
     else:
-        # TODO: we need to sleep and rerun this producer every 1 minute at execution level or write it here.
+        # TODO: we need to sleep and rerun this producer every 1 minute at execution level
         pass

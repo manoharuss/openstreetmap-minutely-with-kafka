@@ -84,7 +84,8 @@ def get_local_sequence_numbers() -> int:
             local_sequencenumber_line.split("sequenceNumber=")[1]
         )
         return local_sequence_number
-    except:
+    except Exception as e:
+        print(str(e))
         raise " No local state.txt available!! An initial state.txt is required."
 
 

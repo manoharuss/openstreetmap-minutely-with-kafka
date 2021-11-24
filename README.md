@@ -1,6 +1,6 @@
 # openstreetmap-minutely-with-kafka 
 
-This is an Apache Kafka implementation template to create a Producer and Consumer for listening to OpenStreetMap Minutely diffs. Each Pub/Sub message is a minutely osc.gz text, we can further break this down into a single geojson by parsing the osc file with osmium-tool.
+This is an Apache Kafka implementation template to create a Producer and Consumer for listening to OpenStreetMap Minutely diffs. Each Pub/Sub message is a minutely osc.gz text, we can further break this down into a single geojson by parsing the osc file with [osmium-tool](https://docs.osmcode.org/osmium/latest/osmium-export.html).
 
 - [Installation](#installation)
   - [Install Kafka in machine](#install-kafka-in-machine)
